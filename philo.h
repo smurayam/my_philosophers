@@ -8,7 +8,6 @@
 # include <unistd.h>
 # include <string.h>
 
-// 構造体の前方宣言（相互参照を可能にするため）
 typedef struct s_data	t_data;
 
 typedef struct s_philo
@@ -36,7 +35,5 @@ typedef struct s_data
 	pthread_mutex_t	data_lock;
 	t_philo			*philos;
 }	t_data;
-
-// 関数のプロトタイプ宣言は今後ここに追加していきます
 
 #endif
