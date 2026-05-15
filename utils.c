@@ -48,3 +48,12 @@ void	destroy_all(t_data *data)
 	pthread_mutex_destroy(&data->print_lock);
 	pthread_mutex_destroy(&data->data_lock);
 }
+
+// 現在時刻をミリ秒単位で取得する
+long long	get_time(void)
+{
+	struct timeval	tv;
+
+	gettimeofday(&tv, NULL);
+	return ((tv.tv_sec * 1000) + (tv.tv_usec / 1000));
+}

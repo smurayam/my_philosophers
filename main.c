@@ -47,8 +47,16 @@ int	main(int argc, char **argv)
 
 	printf("Initialization successful!\n");
 
+	printf("Initialization successful!\n");
+
 	// ==========================================
-	// 4. TODO: ここにスレッドを作成して動かす処理が入ります
+	// 4. シミュレーション（スレッド）の開始
+	if (start_simulation(&data) != 0)
+	{
+		printf("Error: Thread creation failed\n");
+		destroy_all(&data);
+		return (1);
+	}
 	// ==========================================
 
 	// 5. プログラム正常終了時のクリーンアップ

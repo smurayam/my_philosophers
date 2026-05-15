@@ -41,5 +41,7 @@ long	ft_atol(const char *str);
 int		check_args(int argc, char **argv);
 int	init_data(t_data *data, int argc, char **argv);
 void destroy_all(t_data *data);
+long long get_time(void);
+int	start_simulation(t_data *data);
 
 #endif
