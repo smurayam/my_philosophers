@@ -8,6 +8,7 @@
 # include <unistd.h>
 # include <string.h>
 
+// 構造体の前方宣言（相互参照を可能にするため）
 typedef struct s_data	t_data;
 
 typedef struct s_philo
@@ -38,5 +39,7 @@ typedef struct s_data
 
 long	ft_atol(const char *str);
 int		check_args(int argc, char **argv);
+int	init_data(t_data *data, int argc, char **argv);
+void destroy_all(t_data *data);
 
 #endif
