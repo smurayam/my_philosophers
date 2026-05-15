@@ -36,4 +36,7 @@ typedef struct s_data
 	t_philo			*philos;
 }	t_data;
 
+long	ft_atol(const char *str);
+int		check_args(int argc, char **argv);
+
 #endif
