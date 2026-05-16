@@ -43,5 +43,8 @@ int	init_data(t_data *data, int argc, char **argv);
 void destroy_all(t_data *data);
 long long get_time(void);
 int	start_simulation(t_data *data);
+void    print_status(t_philo *philo, char *status);
+int	check_if_dead(t_data *data);
+void	*monitor_routine(void *arg);
 
 #endif
