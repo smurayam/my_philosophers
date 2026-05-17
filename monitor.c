@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   monitor.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nnnya <nnnya@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/05/17 18:57:38 by nnnya             #+#    #+#             */
+/*   Updated: 2026/05/17 18:57:41 by nnnya            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "philo.h"
 
 static int	check_death(t_data *data, int i)
@@ -7,8 +19,8 @@ static int	check_death(t_data *data, int i)
 		data->is_dead = 1;
 		pthread_mutex_unlock(&data->data_lock);
 		pthread_mutex_lock(&data->print_lock);
-		printf("%lld %d died\n",
-			get_time() - data->start_time, data->philos[i].id);
+		printf("%lld %d died\n", get_time() - data->start_time,
+			data->philos[i].id);
 		pthread_mutex_unlock(&data->print_lock);
 		return (1);
 	}

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nnnya <nnnya@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/05/17 18:57:13 by nnnya             #+#    #+#             */
+/*   Updated: 2026/05/17 18:57:19 by nnnya            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "philo.h"
 
 int	check_args(int argc, char **argv)
@@ -30,25 +42,20 @@ int	main(int argc, char **argv)
 
 	if (check_args(argc, argv) != 0)
 		return (1);
-	
 	memset(&data, 0, sizeof(t_data));
-
 	if (init_data(&data, argc, argv) != 0)
 	{
 		printf("Error: Initialization failed\n");
 		destroy_all(&data);
 		return (1);
 	}
-
 	printf("Initialization successful!\n");
-
 	if (start_simulation(&data) != 0)
 	{
 		printf("Error: Thread creation failed\n");
 		destroy_all(&data);
 		return (1);
 	}
-
 	destroy_all(&data);
 	return (0);
 }

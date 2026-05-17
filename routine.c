@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   routine.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nnnya <nnnya@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/05/17 18:57:53 by nnnya             #+#    #+#             */
+/*   Updated: 2026/05/17 18:57:56 by nnnya            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "philo.h"
 
 static int	take_forks_and_eat(t_philo *philo)
@@ -68,8 +80,8 @@ int	start_simulation(t_data *data)
 	while (++i < data->num_philos)
 	{
 		data->philos[i].last_meal_time = get_time();
-		if (pthread_create(&data->philos[i].thread, NULL,
-				philo_routine, &data->philos[i]) != 0)
+		if (pthread_create(&data->philos[i].thread, NULL, philo_routine,
+				&data->philos[i]) != 0)
 			return (handle_thread_error(data, i));
 	}
 	if (pthread_create(&monitor, NULL, monitor_routine, data) != 0)
