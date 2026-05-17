@@ -1,6 +1,5 @@
 #include "philo.h"
 
-// フォーク（ミューテックス）の初期化
 int	init_forks(t_data *data)
 {
 	int	i;
@@ -18,7 +17,6 @@ int	init_forks(t_data *data)
 	return (0);
 }
 
-// 哲学者の個別データの初期化
 void	init_philos(t_data *data)
 {
 	int	i;
@@ -30,15 +28,12 @@ void	init_philos(t_data *data)
 		data->philos[i].eat_count = 0;
 		data->philos[i].last_meal_time = 0;
 		data->philos[i].data = data;
-		// 哲学者の左側にあるフォークを割り当て
 		data->philos[i].left_fork = &data->forks[i];
-		// 哲学者の右側にあるフォークを割り当て（円卓なので最後は0番目に戻る）
 		data->philos[i].right_fork = &data->forks[(i + 1) % data->num_philos];
 		i++;
 	}
 }
 
-// 全体データの初期化
 int	init_data(t_data *data, int argc, char **argv)
 {
 	data->num_philos = (int)ft_atol(argv[1]);

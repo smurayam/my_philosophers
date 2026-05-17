@@ -28,16 +28,11 @@ int	main(int argc, char **argv)
 {
 	t_data	data;
 
-	// 1. 引数のバリデーション
 	if (check_args(argc, argv) != 0)
 		return (1);
 	
-	// 2. 構造体のゼロクリア（超重要）
-	// これにより、ポインタ(forksやphilos)が最初は確実にNULLになり、
-	// 万が一初期化に失敗して destroy_all に入っても、安全に if(data->forks) で判定できます。
 	memset(&data, 0, sizeof(t_data));
 
-	// 3. 初期化処理
 	if (init_data(&data, argc, argv) != 0)
 	{
 		printf("Error: Initialization failed\n");
@@ -47,19 +42,13 @@ int	main(int argc, char **argv)
 
 	printf("Initialization successful!\n");
 
-	printf("Initialization successful!\n");
-
-	// ==========================================
-	// 4. シミュレーション（スレッド）の開始
 	if (start_simulation(&data) != 0)
 	{
 		printf("Error: Thread creation failed\n");
 		destroy_all(&data);
 		return (1);
 	}
-	// ==========================================
 
-	// 5. プログラム正常終了時のクリーンアップ
 	destroy_all(&data);
 	return (0);
 }

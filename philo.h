@@ -8,7 +8,6 @@
 # include <unistd.h>
 # include <string.h>
 
-// 構造体の前方宣言（相互参照を可能にするため）
 typedef struct s_data	t_data;
 
 typedef struct s_philo
