@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: nnnya <nnnya@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/05/17 18:57:38 by nnnya             #+#    #+#             */
-/*   Updated: 2026/05/17 18:57:41 by nnnya            ###   ########.fr       */
+/*   Created: 2026/05/17 19:05:11 by nnnya             #+#    #+#             */
+/*   Updated: 2026/05/17 19:05:23 by nnnya            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,34 +27,42 @@ static int	check_death(t_data *data, int i)
 	return (0);
 }
 
+static int	check_philosophers(t_data *data)
+{
+	int	i;
+	int	all_ate;
+
+	i = -1;
+	all_ate = 1;
+	while (++i < data->num_philos)
+	{
+		pthread_mutex_lock(&data->data_lock);
+		if (check_death(data, i))
+			return (1);
+		if (data->must_eat_count == -1
+			|| data->philos[i].eat_count < data->must_eat_count)
+			all_ate = 0;
+		pthread_mutex_unlock(&data->data_lock);
+	}
+	if (all_ate == 1)
+	{
+		pthread_mutex_lock(&data->data_lock);
+		data->is_dead = 1;
+		pthread_mutex_unlock(&data->data_lock);
+		return (1);
+	}
+	return (0);
+}
+
 void	*monitor_routine(void *arg)
 {
 	t_data	*data;
-	int		i;
-	int		all_ate;
 
 	data = (t_data *)arg;
 	while (1)
 	{
-		i = -1;
-		all_ate = 1;
-		while (++i < data->num_philos)
-		{
-			pthread_mutex_lock(&data->data_lock);
-			if (check_death(data, i))
-				return (NULL);
-			if (data->must_eat_count == -1
-				|| data->philos[i].eat_count < data->must_eat_count)
-				all_ate = 0;
-			pthread_mutex_unlock(&data->data_lock);
-		}
-		if (all_ate == 1)
-		{
-			pthread_mutex_lock(&data->data_lock);
-			data->is_dead = 1;
-			pthread_mutex_unlock(&data->data_lock);
+		if (check_philosophers(data))
 			return (NULL);
-		}
 		ft_usleep(1, data);
 	}
 	return (NULL);

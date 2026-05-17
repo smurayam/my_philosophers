@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: nnnya <nnnya@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/05/17 18:57:59 by nnnya             #+#    #+#             */
-/*   Updated: 2026/05/17 18:58:02 by nnnya            ###   ########.fr       */
+/*   Created: 2026/05/17 19:06:18 by nnnya             #+#    #+#             */
+/*   Updated: 2026/05/17 19:09:00 by nnnya            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,26 +35,6 @@ long	ft_atol(const char *str)
 	if (str[i] != '\0')
 		return (-1);
 	return (res);
-}
-
-void	destroy_all(t_data *data)
-{
-	int	i;
-
-	if (data->forks)
-	{
-		i = 0;
-		while (i < data->num_philos)
-		{
-			pthread_mutex_destroy(&data->forks[i]);
-			i++;
-		}
-		free(data->forks);
-	}
-	if (data->philos)
-		free(data->philos);
-	pthread_mutex_destroy(&data->print_lock);
-	pthread_mutex_destroy(&data->data_lock);
 }
 
 long long	get_time(void)

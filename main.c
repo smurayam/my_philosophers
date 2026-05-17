@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: nnnya <nnnya@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/05/17 18:57:13 by nnnya             #+#    #+#             */
-/*   Updated: 2026/05/17 18:57:19 by nnnya            ###   ########.fr       */
+/*   Created: 2026/05/17 19:07:01 by nnnya             #+#    #+#             */
+/*   Updated: 2026/05/17 19:08:27 by nnnya            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,26 @@ int	check_args(int argc, char **argv)
 		i++;
 	}
 	return (0);
+}
+
+void	destroy_all(t_data *data)
+{
+	int	i;
+
+	if (data->forks)
+	{
+		i = 0;
+		while (i < data->num_philos)
+		{
+			pthread_mutex_destroy(&data->forks[i]);
+			i++;
+		}
+		free(data->forks);
+	}
+	if (data->philos)
+		free(data->philos);
+	pthread_mutex_destroy(&data->print_lock);
+	pthread_mutex_destroy(&data->data_lock);
 }
 
 int	main(int argc, char **argv)
