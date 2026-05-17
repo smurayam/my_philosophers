@@ -36,14 +36,15 @@ typedef struct s_data
 	t_philo			*philos;
 }	t_data;
 
-long	ft_atol(const char *str);
-int		check_args(int argc, char **argv);
-int	init_data(t_data *data, int argc, char **argv);
-void destroy_all(t_data *data);
-long long get_time(void);
-int	start_simulation(t_data *data);
-void    print_status(t_philo *philo, char *status);
-int	check_if_dead(t_data *data);
-void	*monitor_routine(void *arg);
+long		ft_atol(const char *str);
+int			check_args(int argc, char **argv);
+int			init_data(t_data *data, int argc, char **argv);
+void		destroy_all(t_data *data);
+long long	get_time(void);
+int			start_simulation(t_data *data);
+void		print_status(t_philo *philo, char *status);
+int			check_if_dead(t_data *data);
+void		*monitor_routine(void *arg);
+void		ft_usleep(long long time_in_ms, t_data *data);
 
 #endif

@@ -73,3 +73,16 @@ int	check_if_dead(t_data *data)
 	pthread_mutex_unlock(&data->data_lock);
 	return (dead);
 }
+
+void	ft_usleep(long long time_in_ms, t_data *data)
+{
+	long long	start;
+
+	start = get_time();
+	while ((get_time() - start) < time_in_ms)
+	{
+		if (check_if_dead(data))
+			break ;
+		usleep(500);
+	}
+}
